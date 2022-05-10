@@ -40,7 +40,13 @@ const EmployeeList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <Employee employees={employees} />
+                    {
+                        employees.map((employee) => (
+                            <tr key={employee.id}>
+                                <Employee employee={employee} />
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table>
 
