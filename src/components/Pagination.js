@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const Pagination = ({ pages, setCurrentPage, currentEmployee, sortedEmployees }) => {
     const numOfPages = [];
+    const employees = localStorage.getItem('employees')
 
     for (let i = 1; i <= pages; i++) {
         numOfPages.push(i);
@@ -41,7 +42,7 @@ const Pagination = ({ pages, setCurrentPage, currentEmployee, sortedEmployees })
         }
 
         setArrOfCurrButtons(tempNumOfPages)
-    }, [currentButton])
+    }, [currentButton, employees])
 
     return (
         <div className="clearfix">
