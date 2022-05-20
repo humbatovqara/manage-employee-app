@@ -9,10 +9,35 @@ const Pagination = ({ pages, setCurrentPage, currentEmployee, sortedEmployees })
     }
 
     const [currentButton, setCurrentButton] = useState(1);
+    // const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
     useEffect(() => {
         setCurrentPage(currentButton)
     }, [currentButton, setCurrentPage])
+
+    /* useEffect(() => {
+        let tempNumOfPages = [...arrOfCurrButtons];
+        const dots = '...';
+
+        if (currentButton >= 1 && currentButton <= 2) {
+            tempNumOfPages = [1, 2, 3, dots, numOfPages.length]
+        }
+        else if (currentButton === 3) {
+            const sliced = numOfPages.slice(0, 3)
+            tempNumOfPages = [...sliced, dots, numOfPages.length]
+        }
+        else if (currentButton > 3 && currentButton < numOfPages.length - 2) {
+            const sliced1 = numOfPages.slice(currentButton - 2, currentButton);
+            const sliced2 = numOfPages.slice(currentButton, currentButton + 1);
+            tempNumOfPages = ([1, dots, ...sliced1, ...sliced2, dots, numOfPages.length])
+        }
+        else if (currentButton > numOfPages.length - 3) {
+            const sliced = numOfPages.slice(numOfPages.length - 3)
+            tempNumOfPages = ([1, dots, ...sliced])
+        }
+
+        setArrOfCurrButtons(tempNumOfPages)
+    }, [currentButton]) */
 
     return (
         <div className="clearfix">
