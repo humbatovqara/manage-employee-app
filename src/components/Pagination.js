@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 const Pagination = ({ pages, setCurrentPage, currentEmployee, sortedEmployees }) => {
-
     const numOfPages = [];
 
     for (let i = 1; i <= pages; i++) {
@@ -9,35 +8,40 @@ const Pagination = ({ pages, setCurrentPage, currentEmployee, sortedEmployees })
     }
 
     const [currentButton, setCurrentButton] = useState(1);
-    // const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
+    const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
     useEffect(() => {
         setCurrentPage(currentButton)
     }, [currentButton, setCurrentPage])
 
-    /* useEffect(() => {
+    useEffect(() => {
         let tempNumOfPages = [...arrOfCurrButtons];
         const dots = '...';
 
-        if (currentButton >= 1 && currentButton <= 2) {
-            tempNumOfPages = [1, 2, 3, dots, numOfPages.length]
+        if (numOfPages.length < 4) {
+            tempNumOfPages = [...numOfPages]
         }
-        else if (currentButton === 3) {
-            const sliced = numOfPages.slice(0, 3)
-            tempNumOfPages = [...sliced, dots, numOfPages.length]
-        }
-        else if (currentButton > 3 && currentButton < numOfPages.length - 2) {
-            const sliced1 = numOfPages.slice(currentButton - 2, currentButton);
-            const sliced2 = numOfPages.slice(currentButton, currentButton + 1);
-            tempNumOfPages = ([1, dots, ...sliced1, ...sliced2, dots, numOfPages.length])
-        }
-        else if (currentButton > numOfPages.length - 3) {
-            const sliced = numOfPages.slice(numOfPages.length - 3)
-            tempNumOfPages = ([1, dots, ...sliced])
+        else {
+            if (currentButton >= 1 && currentButton <= 2) {
+                tempNumOfPages = [1, 2, 3, dots, numOfPages.length]
+            }
+            else if (currentButton === 3) {
+                const sliced = numOfPages.slice(0, 3)
+                tempNumOfPages = [...sliced, dots, numOfPages.length]
+            }
+            else if (currentButton > 3 && currentButton < numOfPages.length - 2) {
+                const sliced1 = numOfPages.slice(currentButton - 2, currentButton);
+                const sliced2 = numOfPages.slice(currentButton, currentButton + 1);
+                tempNumOfPages = ([1, dots, ...sliced1, ...sliced2, dots, numOfPages.length])
+            }
+            else if (currentButton > numOfPages.length - 3) {
+                const sliced = numOfPages.slice(numOfPages.length - 3)
+                tempNumOfPages = ([1, dots, ...sliced])
+            }
         }
 
         setArrOfCurrButtons(tempNumOfPages)
-    }, [currentButton]) */
+    }, [currentButton])
 
     return (
         <div className="clearfix">
@@ -47,7 +51,7 @@ const Pagination = ({ pages, setCurrentPage, currentEmployee, sortedEmployees })
                     onClick={() => setCurrentButton((prev) => prev === 1 ? prev : prev - 1)}>Previous</a></li>
 
                 {
-                    numOfPages.map((page, index) => {
+                    arrOfCurrButtons.map((page, index) => {
                         return (
                             <li key={index} className={`${currentButton === page ? 'page-item active' : 'page-item'}`}>
                                 <a href="#!" className="page-link"

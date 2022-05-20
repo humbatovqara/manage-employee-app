@@ -12,6 +12,10 @@ const Employee = ({ employee }) => {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
+    const deleteEmployee = () => {
+        dispatch({ type: 'remove_employee', id: employee.id })
+    }
+
     useEffect(() => {
         handleClose();
     }, [employee])
@@ -38,7 +42,7 @@ const Employee = ({ employee }) => {
                             Delete
                         </Tooltip>
                     }>
-                    <button onClick={() => dispatch({ type: 'remove_employee', id: employee.id })} className="btn text-danger p-0 delete" data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
+                    <button onClick={deleteEmployee} className="btn text-danger p-0 delete" data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
                 </OverlayTrigger>
             </td>
 
